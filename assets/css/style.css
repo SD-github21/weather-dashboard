@@ -7,9 +7,13 @@ header {
     text-align: center;
 }
 
-h3 {
+h3, h4 {
     justify-content:center;
     text-align: center;
+}
+
+p {
+    margin-left: 25px;
 }
 
 .btn {
@@ -27,6 +31,8 @@ h3 {
     text-align: center;
     width: 100%;
 }
+
+
 
 .dashboard-title { 
     background-color: darkturquoise;
