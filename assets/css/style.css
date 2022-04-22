@@ -1,0 +1,35 @@
+body {
+    font-family: 'Merriweather', serif;
+}
+
+header {
+    justify-content:center;
+    text-align: center;
+}
+
+h3 {
+    justify-content:center;
+    text-align: center;
+}
+
+.btn {
+    
+    justify-content:center;
+    text-align: center;
+    width: 100%;
+    background-color: darkturquoise;
+    color: whitesmoke;
+
+}
+
+.form-input {
+    justify-content:center;
+    text-align: center;
+    width: 100%;
+}
+
+.dashboard-title { 
+    background-color: darkturquoise;
+    color: whitesmoke;
+     
+}
