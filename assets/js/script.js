@@ -78,7 +78,7 @@ var searchCityHandler = function(event) {
         if (response.ok) {
           console.log(response);
           response.json().then(function(data) {
-            console.log(data);
+            displayFiveDays(data);
           });
         } else {
           alert('Error: ' + response.statusText);
@@ -90,7 +90,18 @@ var searchCityHandler = function(event) {
   };
   
 
+  var displayFiveDays = function(data) {
 
+      // loop over days
+
+    var days = data.daily;
+    console.log(days);
+    for (var i = 0; i < 5; i++) {
+      // format repo name
+      var day = days[i].temp.day + ' ℉';
+      console.log(day)
+      }
+  }
 
 
 
