@@ -98,8 +98,16 @@ var searchCityHandler = function(event) {
     console.log(days);
     for (var i = 0; i < 5; i++) {
       // format repo name
-      var day = days[i].temp.day + ' ℉';
-      console.log(day)
+      var icons = days[i].weather[0].icon;
+      console.log(icons);
+      var temps = days[i].temp.day + ' ℉';
+      console.log(temps);
+      var windspeed = days[i].wind_speed + ' MPH'
+      console.log(windspeed);
+      var humidity = days[i].humidity + ' %'
+      console.log(humidity);
+
+
       }
   }
 
