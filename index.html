@@ -21,13 +21,19 @@
         <div class="row">
             <div class="col-3">
                 <h3>Search for a City: </h3>
-                <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input mx-3"/><br>
-                <button type="submit" class="btn mx-3 my-3">Search</button>
+                <form id="city-form">
+                    <input name="city-search" id="city-search" type="text" autofocus="true" class="form-input mx-3"/><br>
+                    <button type="submit" class="btn mx-3 my-3">Search</button>
+                </form>
+                <div class="btns"></div>
             </div>
 
             <div class="col-9">
                 <div class="card-top border border-dark mx-3">
-                    <h3 id="currentDay"></h3>
+                    <div id="city">
+                        <h3 id="city-name"></h3><h3 id="currentDay"></h3><span id="currentIcon"></span>
+                    </div>
+
                     <p> Temp: </p>
                     <p> Wind: </p>
                     <p> Humidity: </p>
