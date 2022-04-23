@@ -8,12 +8,13 @@ header {
 }
 
 #city-name, #currentDay, .five-day-title {
-    justify-content:center;
-    text-align: center;
+    justify-content:left;
+    margin-left: 5px;
+
 }
 
 .card-top p {
-    margin-left: 25px;
+    margin-left: 5px;
 }
 
 .card-bottom {
