@@ -7,13 +7,27 @@ header {
     text-align: center;
 }
 
-h3, h4 {
+h3, .five-day-title {
     justify-content:center;
     text-align: center;
 }
 
-p {
+.card-top p {
     margin-left: 25px;
+}
+
+.card-bottom {
+    background-color: rgb(252, 234, 236);
+}
+
+.card-bottom p {
+    margin-left: 5px;
+    font-size: 12px;
+
+}
+
+.card-bottom h4 {
+    margin-left: 5px;
 }
 
 .btn {
