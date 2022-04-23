@@ -17,7 +17,7 @@ h3, .five-day-title {
 }
 
 .card-bottom {
-    background-color: rgb(252, 234, 236);
+    background-color: rgb(254, 244, 246);
 }
 
 .card-bottom p {
@@ -28,6 +28,7 @@ h3, .five-day-title {
 
 .card-bottom h4 {
     margin-left: 5px;
+    font-size: 16px;
 }
 
 .btn {

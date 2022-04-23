@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 </head>
@@ -27,7 +27,7 @@
 
             <div class="col-9">
                 <div class="card-top border border-dark mx-3">
-                    <h3>City (Date) Icon</h3>
+                    <h3 id="currentDay"></h3>
                     <p> Temp: </p>
                     <p> Wind: </p>
                     <p> Humidity: </p>
@@ -38,30 +38,48 @@
                 <h4 class="my-3 five-day-title">5-Day Forcast</h4>
                 <div class="five-day row my-3">
                     <div class="col card-bottom border border dark mx-3">
-                        <h4>Day 1</h4><br>
-                        <p>Icon</p><br>
-                        <p>Temp: </p><br>
-                        <p>Wind: </p><br>
+                        <h4 id="day1">Day 1</h4><br>
+                        <p>Icon</p>
+                        <p>Temp: </p>
+                        <p>Wind: </p>
                         <p>Humidity: </p>
                     </div>
                     <div class="col card-bottom border border dark mx-3">
-                        <h4>Day 2</h4>                       
+                        <h4 id="day2">Day 2</h4><br>
+                        <p>Icon</p>
+                        <p>Temp: </p>
+                        <p>Wind: </p>
+                        <p>Humidity: </p>                       
                     </div>
                     <div class="col card-bottom border border dark mx-3">
-                        <h4>Day 3</h4>
+                        <h4 id="day3">Day 3</h4><br>
+                        <p>Icon</p>
+                        <p>Temp: </p>
+                        <p>Wind: </p>
+                        <p>Humidity:                        
                     </div>
                     <div class="col card-bottom border border dark mx-3">
-                        <h4>Day 4</h4>
+                        <h4 id="day4">Day 4</h4><br>
+                        <p>Icon</p>
+                        <p>Temp: </p>
+                        <p>Wind: </p>
+                        <p>Humidity: </p>                       
                     </div>
                     <div class="col card-bottom border border dark mx-3">
-                        <h4>Day 5</h4>
+                        <h4 id="day5">Day 5</h4><br>
+                        <p>Icon</p>
+                        <p>Temp: </p>
+                        <p>Wind: </p>
+                        <p>Humidity: </p>                       
                     </div>
 
                 </div>
     
             </div>
         </div>
-    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="./assets/js/script.js"></script>
     
 </body>
 </html>
