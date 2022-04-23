@@ -1,6 +1,3 @@
-// Retrieve Open Weather API call for city name
-// {city name}cnt=5
-
 var cityFormEl = document.querySelector('#city-form');
 var cityInputEl = document.querySelector('#city-search');
 var btnsContainerEl = document.querySelector('#btns');
