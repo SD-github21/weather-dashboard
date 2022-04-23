@@ -1,20 +1,19 @@
 // Retrieve Open Weather API call for city name
 // {city name}cnt=5
 
+var cityFormEl = document.querySelector('#city-form');
+var cityInputEl = document.querySelector('#city-search');
+var btnsContainerEl = document.querySelector('#btns');
+var cityCardEl = document.querySelector('.card-top')
 
 // Add current day and 5 day dates using Moment.js
-var currentDay = document.getElementById("currentDay");
+document.getElementById("currentDay").innerHTML = moment().format("MM/DD/YYYY");
 document.getElementById("day1").innerHTML = moment().add(1, 'days').format("MM/DD/YYYY");
 document.getElementById("day2").innerHTML = moment().add(2, 'days').format("MM/DD/YYYY");
 document.getElementById("day3").innerHTML = moment().add(3, 'days').format("MM/DD/YYYY");
 document.getElementById("day4").innerHTML = moment().add(4, 'days').format("MM/DD/YYYY");
 document.getElementById("day5").innerHTML = moment().add(5, 'days').format("MM/DD/YYYY");
 
-var cityFormEl = document.querySelector('#city-form');
-var cityInputEl = document.querySelector('#city-search');
-var btnsContainerEl = document.querySelector('#btns');
-var cityNameEl = document.querySelector('#city');
-var cityCardEl = document.querySelector('.card-top')
 
 var searchCityHandler = function(event) {
     // prevent page from refreshing
@@ -28,8 +27,13 @@ var searchCityHandler = function(event) {
       getCityData(cityname);
       
       // set city name value to city card
+      var cityNameEl = document.createElement("h3");
+      cityNameEl.setAttribute("id", "city-name");
       cityNameEl.textContent = cityname;  
-      cityCardEl.prepend(cityNameEl)
+      cityCardEl.appendChild(cityNameEl);
+
+
+
       // clear old content
     //   btnsContainerEl.textContent = '';
       cityInputEl.value = '';
@@ -42,7 +46,7 @@ var searchCityHandler = function(event) {
   
   var getCityData = function(city) {
     // format the open weather api url to accept a city name
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
   
     // make a get request to url
     fetch(apiUrl)

@@ -7,7 +7,7 @@ header {
     text-align: center;
 }
 
-h3, .five-day-title {
+#city-name, #currentDay, .five-day-title {
     justify-content:center;
     text-align: center;
 }
