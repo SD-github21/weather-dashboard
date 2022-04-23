@@ -2,14 +2,16 @@ body {
     font-family: 'Merriweather', serif;
 }
 
-header {
+header, #city-title {
     justify-content:center;
     text-align: center;
 }
 
-#city-name, #currentDay, .five-day-title {
+
+
+.five-day-title {
     justify-content:left;
-    margin-left: 5px;
+    margin-left: 15px;
 
 }
 
