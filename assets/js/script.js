@@ -6,13 +6,16 @@ var cityButtonsEl = document.querySelector("#city-buttons");
 var cityDataEl = document.querySelector("#weather-data");
 var cityCardTopEl = document.querySelector("#card-top");
 var cityFiveDayTitle = document.querySelector(".five-day-title");
+var cityDay1Title = document.querySelector("#date1");
+var cityDay2Title = document.querySelector("#date2");
+var cityDay3Title = document.querySelector("#date3");
+var cityDay4Title = document.querySelector("#date4");
+var cityDay5Title = document.querySelector("#date5");
 var cityDay1Data = document.querySelector("#day1");
 var cityDay2Data = document.querySelector("#day2");
 var cityDay3Data = document.querySelector("#day3");
 var cityDay4Data = document.querySelector("#day4");
 var cityDay5Data = document.querySelector("#day5");
-
-
 
 var searchCityHandler = function(event) {
     // prevent page from refreshing
@@ -151,15 +154,24 @@ var searchCityHandler = function(event) {
   var displayFiveDays = function(data) {
     // Add title for 5-Day Forecast
     cityFiveDayTitle.textContent = "5-Day Forecast:"
+    cityDay1Data.classList.add("card-bottom", "border", "border-dark", "mx-3");
+    cityDay2Data.classList.add("card-bottom", "border", "border-dark", "mx-3");
+    cityDay3Data.classList.add("card-bottom", "border", "border-dark", "mx-3");
+    cityDay4Data.classList.add("card-bottom", "border", "border-dark", "mx-3");
+    cityDay5Data.classList.add("card-bottom", "border", "border-dark", "mx-3");
+
+    cityDay1Title.innerHTML = moment().add(1, 'days').format("MM/DD/YYYY");
+    cityDay2Title.innerHTML = moment().add(2, 'days').format("MM/DD/YYYY");
+    cityDay3Title.innerHTML = moment().add(3, 'days').format("MM/DD/YYYY");
+    cityDay4Title.innerHTML = moment().add(4, 'days').format("MM/DD/YYYY");
+    cityDay5Title.innerHTML = moment().add(5, 'days').format("MM/DD/YYYY");
 
     // Set data from Open Weather API into variable 
     var days = data.daily;
 
     // Create Day 1 Data Card
     // Day 1 Date
-    var dayOneDateEl = document.createElement("h4");
-    dayOneDateEl.innerHTML = moment().add(1, 'days').format("MM/DD/YYYY");
-
+    
     // Day 1 Icon
     var icon1 = days[1].weather[0].icon;
     var day1IconEl = document.createElement("img");
@@ -180,12 +192,144 @@ var searchCityHandler = function(event) {
     var humidityEl = document.createElement("p");
     humidityEl.textContent = "Humidity:  " + humidity1;
     
-    cityDay1Data.appendChild(dayOneDateEl);
     cityDay1Data.appendChild(day1IconEl);
     cityDay1Data.appendChild(temp1El);
     cityDay1Data.appendChild(windspeedEl);
     cityDay1Data.appendChild(humidityEl);
+//--------------------------------------------------------------------------------------------
+
+    // Create Day 2 Data Card
+    // Day 2 Date
     
+    // Day 2 Icon
+    var icon2 = days[2].weather[0].icon;
+    var day2IconEl = document.createElement("img");
+    day2IconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon2 +".png");
+
+    // Day 2 Temp
+    var temp2 = days[2].temp.day + ' ℉';  
+    var temp2El = document.createElement("p");
+    temp2El.textContent = "Temp:  " + temp2;
+    
+    // Day 2 Wind Speed
+    var windspeed2 = days[2].wind_speed + ' MPH';
+    var windspeedEl = document.createElement("p"); 
+    windspeedEl.textContent = "Wind:  " + windspeed2;
+
+    // Day 2 Humidity
+    var humidity2 = days[2].humidity + ' %'
+    var humidityEl = document.createElement("p");
+    humidityEl.textContent = "Humidity:  " + humidity2;
+    
+    cityDay2Data.appendChild(day2IconEl);
+    cityDay2Data.appendChild(temp2El);
+    cityDay2Data.appendChild(windspeedEl);
+    cityDay2Data.appendChild(humidityEl);
+
+//--------------------------------------------------------------------------------------------
+
+    // Create Day 3 Data Card
+    // Day 3 Date
+    
+    // Day 3 Icon
+    var icon3 = days[3].weather[0].icon;
+    var day3IconEl = document.createElement("img");
+    day3IconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon3 +".png");
+
+    // Day 3 Temp
+    var temp3 = days[3].temp.day + ' ℉';  
+    var temp3El = document.createElement("p");
+    temp3El.textContent = "Temp:  " + temp3;
+    
+    // Day 3 Wind Speed
+    var windspeed3 = days[3].wind_speed + ' MPH';
+    var windspeedEl = document.createElement("p"); 
+    windspeedEl.textContent = "Wind:  " + windspeed3;
+
+    // Day 3 Humidity
+    var humidity3 = days[3].humidity + ' %'
+    var humidityEl = document.createElement("p");
+    humidityEl.textContent = "Humidity:  " + humidity3;
+    
+    cityDay3Data.appendChild(day3IconEl);
+    cityDay3Data.appendChild(temp3El);
+    cityDay3Data.appendChild(windspeedEl);
+    cityDay3Data.appendChild(humidityEl);
+
+//--------------------------------------------------------------------------------------------
+
+    // Create Day 4 Data Card
+    // Day 4 Date
+    
+    // Day 4 Icon
+    var icon4 = days[4].weather[0].icon;
+    var day4IconEl = document.createElement("img");
+    day4IconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon4 +".png");
+
+    // Day 4 Temp
+    var temp4 = days[4].temp.day + ' ℉';  
+    var temp4El = document.createElement("p");
+    temp4El.textContent = "Temp:  " + temp4;
+    
+    // Day 4 Wind Speed
+    var windspeed4 = days[4].wind_speed + ' MPH';
+    var windspeedEl = document.createElement("p"); 
+    windspeedEl.textContent = "Wind:  " + windspeed4;
+
+    // Day 4 Humidity
+    var humidity4 = days[4].humidity + ' %'
+    var humidityEl = document.createElement("p");
+    humidityEl.textContent = "Humidity:  " + humidity4;
+    
+    cityDay4Data.appendChild(day4IconEl);
+    cityDay4Data.appendChild(temp4El);
+    cityDay4Data.appendChild(windspeedEl);
+    cityDay4Data.appendChild(humidityEl);
+
+    //--------------------------------------------------------------------------------------------
+
+    // Create Day 5 Data Card
+    // Day 5 Date
+    
+    // Day 5 Icon
+    var icon5 = days[5].weather[0].icon;
+    var day5IconEl = document.createElement("img");
+    day5IconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon5 +".png");
+
+    // Day 5 Temp
+    var temp5 = days[5].temp.day + ' ℉';  
+    var temp5El = document.createElement("p");
+    temp5El.textContent = "Temp:  " + temp5;
+    
+    // Day 5 Wind Speed
+    var windspeed5 = days[5].wind_speed + ' MPH';
+    var windspeedEl = document.createElement("p"); 
+    windspeedEl.textContent = "Wind:  " + windspeed5;
+
+    // Day 5 Humidity
+    var humidity5 = days[5].humidity + ' %'
+    var humidityEl = document.createElement("p");
+    humidityEl.textContent = "Humidity:  " + humidity5;
+    
+    cityDay5Data.appendChild(day5IconEl);
+    cityDay5Data.appendChild(temp5El);
+    cityDay5Data.appendChild(windspeedEl);
+    cityDay5Data.appendChild(humidityEl);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // for (var i = 1; i < 5; i++) {
@@ -204,11 +348,6 @@ var searchCityHandler = function(event) {
     
 
 
-    // document.getElementById("day2").innerHTML = moment().add(2, 'days').format("MM/DD/YYYY");
-    // document.getElementById("day3").innerHTML = moment().add(3, 'days').format("MM/DD/YYYY");
-    // document.getElementById("day4").innerHTML = moment().add(4, 'days').format("MM/DD/YYYY");
-    // document.getElementById("day5").innerHTML = moment().add(5, 'days').format("MM/DD/YYYY");
-    
 
 
 
