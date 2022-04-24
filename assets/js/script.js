@@ -1,9 +1,11 @@
 
 
-var cityFormEl = document.querySelector('#city-form');
-var cityInputEl = document.querySelector('#city-search');
-var cityButtonsEl = document.querySelector('#city-buttons');
-var cityCardTopEl = document.querySelector('#card-top')
+var cityFormEl = document.querySelector("#city-form");
+var cityInputEl = document.querySelector("#city-search");
+var cityButtonsEl = document.querySelector("#city-buttons");
+var cityDataEl = document.querySelector("#weather-data");
+var cityCardTopEl = document.querySelector("#card-top");
+var cityFiveDayTitle = document.querySelector(".five-day-title")
 
 // Add current day and 5 day dates using Moment.js
 // document.getElementById("currentDay").innerHTML = moment().format("MM/DD/YYYY");
@@ -65,8 +67,7 @@ var searchCityHandler = function(event) {
         if (response.ok) {
           response.json().then(function(data) {
             
-            cityCardTopEl.classList.add("border");
-            cityCardTopEl.classList.add("border-dark");
+            cityCardTopEl.classList.add("border", "border-dark");          
 
             var cityname = data.name;
             var currentDay = moment().format("MM/DD/YYYY");
@@ -118,6 +119,7 @@ var searchCityHandler = function(event) {
 
   var displayCurrentDay = function(data) {
 
+  
   var icon = data.current.weather[0].icon;
   var temp = data.current.temp + ' ℉';
   var windspeed = data.current.wind_speed + ' MPH';
@@ -149,7 +151,7 @@ var searchCityHandler = function(event) {
 
 
   var displayFiveDays = function(data) {
-
+    cityFiveDayTitle.textContent = "5-Day Forecast:"
       // loop over days
 
     var days = data.daily;
