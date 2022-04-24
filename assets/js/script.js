@@ -18,7 +18,8 @@ var searchCityHandler = function(event) {
     if (cityname) {
       getCityData(cityname);
       buttonGenerator(cityname);
-      
+
+     
     } else {
       alert('Please enter a city');
     }
@@ -32,6 +33,9 @@ var searchCityHandler = function(event) {
     cityButtonEl.innerHTML = cityname;
 
     cityButtonsEl.appendChild(cityButtonEl);
+    
+    cityCardTopEl.textContent ="";
+    cityDataEl.textContent="";
   };
 
 
@@ -42,6 +46,8 @@ var searchCityHandler = function(event) {
   
     if (city) {
       getCityData(city); 
+
+        
       
     }
   };
@@ -49,6 +55,7 @@ var searchCityHandler = function(event) {
   
   var getCityData = function(city) {
     // format the open weather api url to accept a city name
+
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
   
     // make a get request to url
@@ -57,7 +64,7 @@ var searchCityHandler = function(event) {
         // request was successful
         if (response.ok) {
           response.json().then(function(data) {
-            
+
             cityCardTopEl.classList.add("border", "border-dark");          
 
             var cityname = data.name;
@@ -110,7 +117,7 @@ var searchCityHandler = function(event) {
 
   var displayCurrentDay = function(data) {
 
-  
+
   var icon = data.current.weather[0].icon;
   var temp = data.current.temp + ' ℉';
   var windspeed = data.current.wind_speed + ' MPH';
