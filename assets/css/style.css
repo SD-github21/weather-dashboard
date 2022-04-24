@@ -57,3 +57,16 @@ header, #city-title {
     color: whitesmoke;
      
 }
+
+.uvigreen {
+    background-color: green;
+}
+
+.uviyellow {
+    background-color: yellow;
+}
+
+.uvired {
+    background-color: red;
+}
+

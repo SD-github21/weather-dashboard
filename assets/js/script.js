@@ -131,6 +131,14 @@ var searchCityHandler = function(event) {
 
   var cityUviEl = document.createElement("p");
   cityUviEl.textContent = "UVI:  " + uvi;
+
+  if (uvi > 5) {
+    cityUviEl.classList.add("uvired")
+  } else if (uvi >=3 && uvi <=5) {
+    cityUviEl.classList.add("uviyellow")
+  } else {
+    cityUviEl.classList.add("uvigreen")
+  };
   
   cityCardTopEl.appendChild(cityIconEl);
   cityCardTopEl.appendChild(cityTempEl);
@@ -183,10 +191,7 @@ var searchCityHandler = function(event) {
       
 
     }
-
-
-
-      };
+  };
   
 
 
