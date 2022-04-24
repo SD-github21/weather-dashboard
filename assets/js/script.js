@@ -5,15 +5,13 @@ var cityInputEl = document.querySelector("#city-search");
 var cityButtonsEl = document.querySelector("#city-buttons");
 var cityDataEl = document.querySelector("#weather-data");
 var cityCardTopEl = document.querySelector("#card-top");
-var cityFiveDayTitle = document.querySelector(".five-day-title")
+var cityFiveDayTitle = document.querySelector(".five-day-title");
+var cityDay1Data = document.querySelector("#day1");
+var cityDay2Data = document.querySelector("#day2");
+var cityDay3Data = document.querySelector("#day3");
+var cityDay4Data = document.querySelector("#day4");
+var cityDay5Data = document.querySelector("#day5");
 
-// Add current day and 5 day dates using Moment.js
-// document.getElementById("currentDay").innerHTML = moment().format("MM/DD/YYYY");
-document.getElementById("day1").innerHTML = moment().add(1, 'days').format("MM/DD/YYYY");
-document.getElementById("day2").innerHTML = moment().add(2, 'days').format("MM/DD/YYYY");
-document.getElementById("day3").innerHTML = moment().add(3, 'days').format("MM/DD/YYYY");
-document.getElementById("day4").innerHTML = moment().add(4, 'days').format("MM/DD/YYYY");
-document.getElementById("day5").innerHTML = moment().add(5, 'days').format("MM/DD/YYYY");
 
 
 var searchCityHandler = function(event) {
@@ -151,25 +149,90 @@ var searchCityHandler = function(event) {
 
 
   var displayFiveDays = function(data) {
+    // Add title for 5-Day Forecast
     cityFiveDayTitle.textContent = "5-Day Forecast:"
+
+    // Set data from Open Weather API into variable 
+    var days = data.daily;
+
+    // Create Day 1 Data Card
+    // Day 1 Date
+    var dayOneDateEl = document.createElement("h4");
+    dayOneDateEl.innerHTML = moment().add(1, 'days').format("MM/DD/YYYY");
+
+    // Day 1 Icon
+    var icon1 = days[1].weather[0].icon;
+    var day1IconEl = document.createElement("img");
+    day1IconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon1 +".png");
+
+    // Day 1 Temp
+    var temp1 = days[1].temp.day + ' ℉';  
+    var temp1El = document.createElement("p");
+    temp1El.textContent = "Temp:  " + temp1;
+    
+    // Day 1 Wind Speed
+    var windspeed1 = days[1].wind_speed + ' MPH';
+    var windspeedEl = document.createElement("p"); 
+    windspeedEl.textContent = "Wind:  " + windspeed1;
+
+    // Day 1 Humidity
+    var humidity1 = days[1].humidity + ' %'
+    var humidityEl = document.createElement("p");
+    humidityEl.textContent = "Humidity:  " + humidity1;
+    
+    cityDay1Data.appendChild(dayOneDateEl);
+    cityDay1Data.appendChild(day1IconEl);
+    cityDay1Data.appendChild(temp1El);
+    cityDay1Data.appendChild(windspeedEl);
+    cityDay1Data.appendChild(humidityEl);
+    
+
+
+    // for (var i = 1; i < 5; i++) {
+    //   // format repo name
+
+    //   var icons = days[i].weather[0].icon;
+    //   console.log(icons);
+    //   var temps = days[i].temp.day + ' ℉';
+    //   console.log(temps);
+    //   var windspeed = days[i].wind_speed + ' MPH'
+    //   console.log(windspeed);
+    //   var humidity = days[i].humidity + ' %'
+    //   console.log(humidity);
+
+
+    
+
+
+    // document.getElementById("day2").innerHTML = moment().add(2, 'days').format("MM/DD/YYYY");
+    // document.getElementById("day3").innerHTML = moment().add(3, 'days').format("MM/DD/YYYY");
+    // document.getElementById("day4").innerHTML = moment().add(4, 'days').format("MM/DD/YYYY");
+    // document.getElementById("day5").innerHTML = moment().add(5, 'days').format("MM/DD/YYYY");
+    
+
+
+
+
       // loop over days
 
-    var days = data.daily;
-    console.log(days);
-    for (var i = 0; i < 5; i++) {
-      // format repo name
-      var icons = days[i].weather[0].icon;
-      console.log(icons);
-      var temps = days[i].temp.day + ' ℉';
-      console.log(temps);
-      var windspeed = days[i].wind_speed + ' MPH'
-      console.log(windspeed);
-      var humidity = days[i].humidity + ' %'
-      console.log(humidity);
+    // var days = data.daily;
+    
+    // console.log(days);
+    // for (var i = 0; i < 5; i++) {
+    //   // format repo name
+    //   var icons = days[i].weather[0].icon;
+    //   console.log(icons);
+    //   var temps = days[i].temp.day + ' ℉';
+    //   console.log(temps);
+    //   var windspeed = days[i].wind_speed + ' MPH'
+    //   console.log(windspeed);
+    //   var humidity = days[i].humidity + ' %'
+    //   console.log(humidity);
 
 
-      }
-  }
+
+      };
+  
 
 
 
