@@ -33,7 +33,7 @@ var searchCityHandler = function(event) {
     cityButtonEl.innerHTML = cityname;
 
     cityButtonsEl.appendChild(cityButtonEl);
-    
+
     cityCardTopEl.textContent ="";
     cityDataEl.textContent="";
   };
@@ -46,7 +46,8 @@ var searchCityHandler = function(event) {
   
     if (city) {
       getCityData(city); 
-
+    cityCardTopEl.textContent ="";
+    cityDataEl.textContent="";
         
       
     }
