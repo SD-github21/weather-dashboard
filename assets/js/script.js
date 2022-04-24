@@ -17,7 +17,8 @@ document.getElementById("day5").innerHTML = moment().add(5, 'days').format("MM/D
 var searchCityHandler = function(event) {
     // prevent page from refreshing
     event.preventDefault();
-  
+          
+   
     // get value from input element
     let cityname = cityInputEl.value.trim();
  
@@ -25,12 +26,11 @@ var searchCityHandler = function(event) {
       getCityData(cityname);
       buttonGenerator(cityname);
       
-      buttonsEl
-
     } else {
       alert('Please enter a city');
     }
   };
+
 
   var buttonGenerator = function(cityname) {
     var cityButtonEl = document.createElement("button");
@@ -39,20 +39,19 @@ var searchCityHandler = function(event) {
     cityButtonEl.innerHTML = cityname;
 
     cityButtonsEl.appendChild(cityButtonEl);
+  };
 
 
-  }
   var buttonClickHandler = function(event){
     
     var city = event.target.getAttribute("data-city");
     console.log(city);
   
     if (city) {
-      getCityData(city);
-  
+      getCityData(city); 
       
     }
-  }
+  };
   
   
   var getCityData = function(city) {
@@ -65,6 +64,7 @@ var searchCityHandler = function(event) {
         // request was successful
         if (response.ok) {
           response.json().then(function(data) {
+            
             var cityname = data.name;
             var currentDay = moment().format("MM/DD/YYYY")
 
@@ -99,6 +99,8 @@ var searchCityHandler = function(event) {
         if (response.ok) {
           console.log(response);
           response.json().then(function(data) {
+            console.log(data);
+            displayCurrentDay(data);
             displayFiveDays(data);
           });
         } else {
@@ -111,41 +113,36 @@ var searchCityHandler = function(event) {
   };
   
 
-  // var displayCurrentDay = function(data) {
+  var displayCurrentDay = function(data) {
 
-  // // set city name value to city card
-  // var cityname = data.name;
-  // var icon = data.weather[0].icon;
-  // var currentDay = moment().format("MM/DD/YYYY")
-  // var temp = data.main.temp + ' ℉';
-  // var windspeed = data.wind.speed + ' MPH'
-  // var humidity = data.main.humidity + ' %'
+  var icon = data.current.weather[0].icon;
+  var temp = data.current.temp + ' ℉';
+  var windspeed = data.current.wind_speed + ' MPH';
+  var humidity = data.current.humidity + ' %';
+  var uvi = data.current.uvi;
 
-  // var cityHeaderEl = document.createElement("h3");
-  // cityHeaderEl.setAttribute("id", "city-name");
-  // cityHeaderEl.textContent = cityname + "  " + currentDay + "  ";
+  var cityIconEl = document.createElement("img");
+  cityIconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon +".png")
 
+  var cityTempEl = document.createElement("p");
+  cityTempEl.textContent = "Temp: " + temp;
 
- 
-  // var cityTempEl = document.createElement("p");
-  // cityTempEl.textContent = "Temp: " + temp;
-
-  // var cityWindSpeedEl = document.createElement("p");
-  // cityWindSpeedEl.textContent = "Wind: " + windspeed;
+  var cityWindSpeedEl = document.createElement("p");
+  cityWindSpeedEl.textContent = "Wind: " + windspeed;
   
-  // var cityHumidityEl = document.createElement("p");
-  // cityHumidityEl.textContent = "Humidity: " + humidity;
+  var cityHumidityEl = document.createElement("p");
+  cityHumidityEl.textContent = "Humidity: " + humidity;
 
-  // var cityIconEl = document.createElement("img");
-  // cityIconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon +".png")
+  var cityUviEl = document.createElement("p");
+  cityUviEl.textContent = "UVI:  " + uvi;
   
-  // cityCardEl.appendChild(cityHeaderEl);
-  // cityCardEl.appendChild(cityIconEl);
-  // cityCardEl.appendChild(cityTempEl);
-  // cityCardEl.appendChild(cityWindSpeedEl);
-  // cityCardEl.appendChild(cityHumidityEl);
-
-  // }
+  cityCardEl.appendChild(cityIconEl);
+  cityCardEl.appendChild(cityTempEl);
+  cityCardEl.appendChild(cityWindSpeedEl);
+  cityCardEl.appendChild(cityHumidityEl);
+  cityCardEl.appendChild(cityUviEl);
+  
+  };
 
 
   var displayFiveDays = function(data) {
