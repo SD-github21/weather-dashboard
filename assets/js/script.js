@@ -3,7 +3,7 @@
 var cityFormEl = document.querySelector('#city-form');
 var cityInputEl = document.querySelector('#city-search');
 var cityButtonsEl = document.querySelector('#city-buttons');
-var cityCardEl = document.querySelector('.card-top')
+var cityCardTopEl = document.querySelector('#card-top')
 
 // Add current day and 5 day dates using Moment.js
 // document.getElementById("currentDay").innerHTML = moment().format("MM/DD/YYYY");
@@ -65,13 +65,16 @@ var searchCityHandler = function(event) {
         if (response.ok) {
           response.json().then(function(data) {
             
+            cityCardTopEl.classList.add("border");
+            cityCardTopEl.classList.add("border-dark");
+
             var cityname = data.name;
-            var currentDay = moment().format("MM/DD/YYYY")
+            var currentDay = moment().format("MM/DD/YYYY");
 
             var cityHeaderEl = document.createElement("h3");
             cityHeaderEl.setAttribute("id", "city-name");
             cityHeaderEl.textContent = cityname + "  (" + currentDay + ")";
-            cityCardEl.appendChild(cityHeaderEl);
+            cityCardTopEl.appendChild(cityHeaderEl);
 
             // displayCurrentDay(data);
             console.log(data);
@@ -136,11 +139,11 @@ var searchCityHandler = function(event) {
   var cityUviEl = document.createElement("p");
   cityUviEl.textContent = "UVI:  " + uvi;
   
-  cityCardEl.appendChild(cityIconEl);
-  cityCardEl.appendChild(cityTempEl);
-  cityCardEl.appendChild(cityWindSpeedEl);
-  cityCardEl.appendChild(cityHumidityEl);
-  cityCardEl.appendChild(cityUviEl);
+  cityCardTopEl.appendChild(cityIconEl);
+  cityCardTopEl.appendChild(cityTempEl);
+  cityCardTopEl.appendChild(cityWindSpeedEl);
+  cityCardTopEl.appendChild(cityHumidityEl);
+  cityCardTopEl.appendChild(cityUviEl);
   
   };
 
