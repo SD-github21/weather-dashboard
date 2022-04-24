@@ -2,7 +2,7 @@
 
 var cityFormEl = document.querySelector('#city-form');
 var cityInputEl = document.querySelector('#city-search');
-var btnsContainerEl = document.querySelector('#btns');
+var cityButtonsEl = document.querySelector('#city-buttons');
 var cityCardEl = document.querySelector('.card-top')
 
 // Add current day and 5 day dates using Moment.js
@@ -23,14 +23,37 @@ var searchCityHandler = function(event) {
  
     if (cityname) {
       getCityData(cityname);
-      // clear old content
-    //   btnsContainerEl.textContent = '';
-      cityInputEl.value = '';
+      buttonGenerator(cityname);
+      
+      buttonsEl
 
     } else {
       alert('Please enter a city');
     }
   };
+
+  var buttonGenerator = function(cityname) {
+    var cityButtonEl = document.createElement("button");
+    cityButtonEl.setAttribute("data-city", cityname);
+    cityButtonEl.classList = "btn mx-3 my-1"
+    cityButtonEl.innerHTML = cityname;
+
+    cityButtonsEl.appendChild(cityButtonEl);
+
+
+  }
+  var buttonClickHandler = function(event){
+    
+    var city = event.target.getAttribute("data-city");
+    console.log(city);
+  
+    if (city) {
+      getCityData(city);
+  
+      
+    }
+  }
+  
   
   var getCityData = function(city) {
     // format the open weather api url to accept a city name
@@ -148,5 +171,5 @@ var searchCityHandler = function(event) {
 
 
 
-
+  cityButtonsEl.addEventListener('click', buttonClickHandler);
   cityFormEl.addEventListener('submit', searchCityHandler);
