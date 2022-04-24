@@ -130,14 +130,18 @@ var searchCityHandler = function(event) {
   cityHumidityEl.textContent = "Humidity: " + humidity;
 
   var cityUviEl = document.createElement("p");
-  cityUviEl.textContent = "UVI:  " + uvi;
+  cityUviEl.textContent = "UVI:  ";
+
+  var cityUviValueEl = document.createElement("span");
+  cityUviValueEl.textContent = uvi;
+  cityUviEl.appendChild(cityUviValueEl);
 
   if (uvi > 5) {
-    cityUviEl.classList.add("uvired")
-  } else if (uvi >=3 && uvi <=5) {
-    cityUviEl.classList.add("uviyellow")
+    cityUviValueEl.classList.add("uvired")
+  } else if (uvi <=2) {
+    cityUviValueEl.classList.add("uvigreen")
   } else {
-    cityUviEl.classList.add("uvigreen")
+    cityUviValueEl.classList.add("uviyellow")
   };
   
   cityCardTopEl.appendChild(cityIconEl);

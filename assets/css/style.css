@@ -60,13 +60,16 @@ header, #city-title {
 
 .uvigreen {
     background-color: green;
+    color:white;
 }
 
 .uviyellow {
     background-color: yellow;
+    color:black
 }
 
 .uvired {
     background-color: red;
+    color: white;
 }
 
