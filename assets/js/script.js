@@ -1,3 +1,4 @@
+// Create variables to select elements from HTML that will be used in functions
 var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city-search");
 var cityButtonsEl = document.querySelector("#city-buttons");
@@ -5,27 +6,35 @@ var cityDataEl = document.querySelector("#five-day");
 var cityCardTopEl = document.querySelector("#card-top");
 var cityFiveDayTitle = document.querySelector(".five-day-title");
 
+// Create an array of cities to store user's searched cities in localStorage
 var cities = [];
+
+// Create a searchCityHandler function for user to enter a city into search form
 var searchCityHandler = function(event) {
-    // prevent page from refreshing
+    // Prevent page from refreshing
     event.preventDefault();
        
-    // get value from input element
+    // Get city name value from input element
     let cityname = cityInputEl.value.trim();
       
+    // Feed user's entered city name into functions that will make Open Weather API call and generate buttons
+    // Push city name into cities array and store in localStorage
+    // Clear input form element 
     if (cityname) {
       getCityData(cityname);
       buttonGenerator(cityname);
       cities.push(cityname);
       localStorage.setItem("cities", JSON.stringify(cities));
       cityInputEl.value = "";  
-     
+    
+     // Alert user to enter a city if the input element is blank 
     } else {
       alert('Please enter a city');
     }
   };
 
-
+  // Create and feed city name into buttonGenerator function to generate buttons based on user's searched cities  
+  // Clear data from any previous searches
   var buttonGenerator = function(cityname) {
 
     var cityButtonEl = document.createElement("button");
@@ -33,27 +42,22 @@ var searchCityHandler = function(event) {
     cityButtonEl.classList = "btn mx-3 my-1"
     cityButtonEl.innerHTML = cityname;
 
-
     cityButtonsEl.appendChild(cityButtonEl);
 
     cityCardTopEl.textContent ="";
     cityDataEl.textContent="";
 
-
-
   };
 
-
+  // Create buttonClickHandler function to allow user to click on city buttons to re-generate city weather data  
   var buttonClickHandler = function(event){
     
     var city = event.target.getAttribute("data-city");
-    console.log(city);
-  
+      
     if (city) {
       getCityData(city); 
     cityCardTopEl.textContent ="";
-    cityDataEl.textContent="";
-        
+    cityDataEl.textContent="";       
       
     }
   };
