@@ -6,7 +6,7 @@ var cityDataEl = document.querySelector("#five-day");
 var cityCardTopEl = document.querySelector("#card-top");
 var cityFiveDayTitle = document.querySelector(".five-day-title");
 
-// Create an array of cities to store user's searched cities in localStorage
+// Create an array to store user's searched cities in localStorage
 var cities = [];
 
 // Create searchCityHandler() for user to enter a city into search form
@@ -18,7 +18,6 @@ var searchCityHandler = function(event) {
     let cityname = cityInputEl.value.trim();
       
     // Feed user's entered city name into functions that will make Open Weather API call and generate buttons
-
     if (cityname) {
       getCityData(cityname);
       buttonGenerator(cityname);
@@ -34,7 +33,8 @@ var searchCityHandler = function(event) {
     }
   };
 
-  // Create and feed city name into buttonGenerator() to generate buttons based on user's searched cities  
+  // Create and feed city name into buttonGenerator() to dynamically generate and display buttons 
+  // for each searched city  
   var buttonGenerator = function(cityname) {
     // Clear data from any previous searches
     cityCardTopEl.textContent ="";
@@ -50,7 +50,7 @@ var searchCityHandler = function(event) {
 
   };
 
-  // Create buttonClickHandler() to allow user to click on city buttons to re-generate city weather data  
+  // Create buttonClickHandler() to allow user to click on city buttons and obtain city weather data  
   var buttonClickHandler = function(event){
     
     var city = event.target.getAttribute("data-city");
@@ -63,8 +63,7 @@ var searchCityHandler = function(event) {
     }
   };
   
-  // Create getCityData() that feeds in user's city name and places a call to the 
-  // Open Weather City Name API URL
+  // Create getCityData() that feeds in user's city name and calls the Open Weather City Name API URL
   var getCityData = function(city) {
 
     // Format the Open Weather API URL to accept a city name
@@ -113,13 +112,11 @@ var searchCityHandler = function(event) {
   // Create buttonDelete() to filter out erroneous city from the saved cities array, reset arrray in  
   // localStorage, and run loadButtons() function again to delete the button for the erroneous city
   var buttonDelete = function(city){
-    console.log(city);
 
-      cities = cities.filter(function(item) {
+    cities = cities.filter(function(item) {
         return item !== city
     })    
 
-    console.log(cities);
     localStorage.setItem("cities", JSON.stringify(cities));
     loadButtons();
 
@@ -130,7 +127,7 @@ var searchCityHandler = function(event) {
     // Format the Open Weather API URL to accept lat and lon and obtain 7 day forecast 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
 
-    // Fetch the city data from the APU URL
+    // Fetch the city data from the API URL
     fetch(apiUrl)
       .then(function(response) {
         // If request is successful, convert data into JSON and feed it into the function
@@ -267,7 +264,7 @@ var searchCityHandler = function(event) {
     savedCities = JSON.parse(savedCities);
     cities = savedCities;
     
-    // Create a for loop to loop through each city and generate a button for each one that will display on page
+    // Create a for loop to loop through each city and generate a button for each city that will display on page
     for (i = 0; i < savedCities.length; i++) {
 
       var cityButtonEl = document.createElement("button");
