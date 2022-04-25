@@ -100,7 +100,10 @@ var searchCityHandler = function(event) {
 
         // Create alerts for any errors that might come up regarding the API call
         } else {
+          cityCardTopEl.innerHTML = "";
+          cityFiveDayTitle.innerHTML = "";
           alert('Error: ' + response.statusText);
+
           buttonDelete(city);
         }
       })
