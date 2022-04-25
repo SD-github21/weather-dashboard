@@ -219,6 +219,8 @@ var searchCityHandler = function(event) {
     } else {
     // parse into array of objects
     savedCities = JSON.parse(savedCities);
+    console.log(savedCities);
+    cities = savedCities;
     for (i = 0; i < savedCities.length; i++) {
 
       var cityButtonEl = document.createElement("button");
