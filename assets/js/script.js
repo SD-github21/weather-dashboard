@@ -62,16 +62,18 @@ var searchCityHandler = function(event) {
     }
   };
   
-  
+  // Create getCityData function that feeds in user's city name and places a call to the 
+  // Open Weather City Name API URL
   var getCityData = function(city) {
-    // format the open weather api url to accept a city name
 
+    // Format the Open Weather API URL to accept a city name
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
   
-    // make a get request to url
+    // Fetch the desired city data from the API URL
     fetch(apiUrl)
       .then(function(response) {
-        // request was successful
+        // If request is successful, convert city data from the URL into JSON and feed it into the function 
+        // Create elements for city name and date to display in Current Weather section of webpage
         if (response.ok) {
           response.json().then(function(data) {
 
@@ -85,8 +87,8 @@ var searchCityHandler = function(event) {
             cityHeaderEl.textContent = cityname + "  (" + currentDay + ")";
             cityCardTopEl.appendChild(cityHeaderEl);
 
-            // displayCurrentDay(data);
-            console.log(data);
+            // Extract the lat and lon from the JSON city data and feed these into the getLonLatWeather function
+            // Create alerts for any errors that might come up regarding the API call
             lat = data.coord.lat;
             lon = data.coord.lon;
             getLonLatWeather(lat, lon);
@@ -100,11 +102,14 @@ var searchCityHandler = function(event) {
       });
   };
   
+  // Create getLonLatWeather function that feeds in the lat and lon coordinates associated with user's city name
+  // and places a call to the Open Weather Lat Lon API URL
   var getLonLatWeather = function(lat, lon) {
-    // format the open weather api url to accept latitude and longitude so that a 7 day forecast can be acccessed
+    // Format the Open Weather API URL to accept latitude and longitude so that the 7 day forecast can be 
+    // acccessed and the 5 day forecast can be extracted from these data
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
 
-    // make a get request to url
+    // Fetch the desired city data from the APU URL
     fetch(apiUrl)
       .then(function(response) {
         // request was successful
