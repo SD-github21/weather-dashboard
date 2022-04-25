@@ -135,7 +135,7 @@ var searchCityHandler = function(event) {
 
   var cityTempEl = document.createElement("p");
   cityTempEl.textContent = "Temp: " + temp;
-
+  
   var cityWindSpeedEl = document.createElement("p");
   cityWindSpeedEl.textContent = "Wind: " + windspeed;
   

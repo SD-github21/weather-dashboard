@@ -1,10 +1,11 @@
 body {
-    font-family: 'Libre Bodoni', serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 header, #city-title {
     justify-content:center;
     text-align: center;
+    font-weight: bold;
 }
 
 
@@ -12,27 +13,38 @@ header, #city-title {
 .five-day-title {
     justify-content:left;
     margin-left: 15px;
+    font-weight: bold;
 
 }
 
-.card-top p {
+#city-name, .card-top p {
     margin-left: 5px;
+    font-weight: bold;
 }
 
-.card-top, .card-bottom {
+.card-top {
+    background-color: rgb(248, 220, 169);
 
-    background-color: rgb(249, 230, 195);
 }
+
+.card-bottom {
+    background-color: rgb(147, 232, 232);
+
+}
+
+
 
 .card-bottom p {
     margin-left: 5px;
     font-size: 12px;
+    font-weight: bold;
 
 }
 
 .card-bottom h4 {
     margin-left: 5px;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .btn {
