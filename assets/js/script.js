@@ -70,7 +70,7 @@ var searchCityHandler = function(event) {
     // Format the Open Weather API URL to accept a city name
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
   
-    // Fetch the desired city data from the API URL
+    // Fetch city data from the API URL
     fetch(apiUrl)
       .then(function(response) {
         // If request is successful, convert city data from the URL into JSON and feed it into the function 
@@ -109,7 +109,7 @@ var searchCityHandler = function(event) {
     // Format the Open Weather API URL to accept lat and lon and obtain 7 day forecast 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
 
-    // Fetch the desired city data from the APU URL
+    // Fetch the city data from the APU URL
     fetch(apiUrl)
       .then(function(response) {
         // If request is successful, convert data into JSON and feed it into the function
@@ -131,16 +131,17 @@ var searchCityHandler = function(event) {
       });
   };
   
-
+  // Create displayCurrentDay function to print city's current weather data on webpage
   var displayCurrentDay = function(data) {
 
-
+  // Extract current day weather data from JSON data, save in variables, generate elements, and append for display
   var icon = data.current.weather[0].icon;
   var temp = data.current.temp + ' ℉';
   var windspeed = data.current.wind_speed + ' MPH';
   var humidity = data.current.humidity + ' %';
   var uvi = data.current.uvi;
-
+  
+  // Obtain city weather icon image from Open Weather Map URL and save into element  
   var cityIconEl = document.createElement("img");
   cityIconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icon +".png")
 
@@ -160,6 +161,7 @@ var searchCityHandler = function(event) {
   cityUviValueEl.textContent = uvi;
   cityUviEl.appendChild(cityUviValueEl);
 
+  // Create conditionals to set background color of UV Index according to favorable, moderate, or severe conditions
   if (uvi > 5) {
     cityUviValueEl.classList.add("uvired")
   } else if (uvi <=2) {
@@ -176,15 +178,19 @@ var searchCityHandler = function(event) {
   
   };
 
-
+  // Create displayFiveDays function to print city's 5 Day Forecast
   var displayFiveDays = function(data) {
+
     // Add title for 5-Day Forecast
     cityFiveDayTitle.textContent = "5-Day Forecast:"
 
+    // Place 7 day forecast data into a variable
     var days = data.daily;
 
+    // Create a for loop to select the 5 day forecast starting with index 1 (index 0 is current day data)
     for (var i = 1; i < 6; i++) {
 
+      // Extract the dates and convert them into desired date format using Moment.js library
       var dates = days[i].dt;
       var cityDateEl = document.createElement("h4");
       cityDateEl.innerHTML = moment(dates*1000).format("MM/DD/YYYY");
