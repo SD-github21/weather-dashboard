@@ -18,13 +18,14 @@ var searchCityHandler = function(event) {
     let cityname = cityInputEl.value.trim();
       
     // Feed user's entered city name into functions that will make Open Weather API call and generate buttons
-    // Push city name into cities array and store in localStorage
-    // Clear input form element 
+
     if (cityname) {
       getCityData(cityname);
       buttonGenerator(cityname);
+      // Push city name into cities array and store in localStorage
       cities.push(cityname);
       localStorage.setItem("cities", JSON.stringify(cities));
+      // Clear input form element 
       cityInputEl.value = "";  
     
      // Alert user to enter a city if the input element is blank 
@@ -34,7 +35,6 @@ var searchCityHandler = function(event) {
   };
 
   // Create and feed city name into buttonGenerator function to generate buttons based on user's searched cities  
-  // Clear data from any previous searches
   var buttonGenerator = function(cityname) {
 
     var cityButtonEl = document.createElement("button");
@@ -44,6 +44,7 @@ var searchCityHandler = function(event) {
 
     cityButtonsEl.appendChild(cityButtonEl);
 
+    // Clear data from any previous searches
     cityCardTopEl.textContent ="";
     cityDataEl.textContent="";
 
@@ -73,10 +74,10 @@ var searchCityHandler = function(event) {
     fetch(apiUrl)
       .then(function(response) {
         // If request is successful, convert city data from the URL into JSON and feed it into the function 
-        // Create elements for city name and date to display in Current Weather section of webpage
         if (response.ok) {
           response.json().then(function(data) {
 
+            // Create elements for city name and date to display in Current Weather section of webpage
             cityCardTopEl.classList.add("border", "border-dark");          
 
             var cityname = data.name;
@@ -88,11 +89,12 @@ var searchCityHandler = function(event) {
             cityCardTopEl.appendChild(cityHeaderEl);
 
             // Extract the lat and lon from the JSON city data and feed these into the getLonLatWeather function
-            // Create alerts for any errors that might come up regarding the API call
             lat = data.coord.lat;
             lon = data.coord.lon;
             getLonLatWeather(lat, lon);
           });
+
+        // Create alerts for any errors that might come up regarding the API call
         } else {
           alert('Error: ' + response.statusText);
         }
@@ -102,24 +104,24 @@ var searchCityHandler = function(event) {
       });
   };
   
-  // Create getLonLatWeather function that feeds in the lat and lon coordinates associated with user's city name
-  // and places a call to the Open Weather Lat Lon API URL
+  // Create getLonLatWeather function that feeds in lat/lon data and calls Open Weather Lat Lon API URL
   var getLonLatWeather = function(lat, lon) {
-    // Format the Open Weather API URL to accept latitude and longitude so that the 7 day forecast can be 
-    // acccessed and the 5 day forecast can be extracted from these data
+    // Format the Open Weather API URL to accept lat and lon and obtain 7 day forecast 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
 
     // Fetch the desired city data from the APU URL
     fetch(apiUrl)
       .then(function(response) {
-        // request was successful
+        // If request is successful, convert data into JSON and feed it into the function
         if (response.ok) {
-          console.log(response);
           response.json().then(function(data) {
-            console.log(data);
+
+            // Feed data into the displayCurrentDay and displayFiveDays functions
             displayCurrentDay(data);
             displayFiveDays(data);
           });
+        
+          // Create alerts for any errors that might come up regarding the API call  
         } else {
           alert('Error: ' + response.statusText);
         }
