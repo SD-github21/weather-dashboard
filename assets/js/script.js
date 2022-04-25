@@ -36,6 +36,9 @@ var searchCityHandler = function(event) {
 
   // Create and feed city name into buttonGenerator() to generate buttons based on user's searched cities  
   var buttonGenerator = function(cityname) {
+    // Clear data from any previous searches
+    cityCardTopEl.textContent ="";
+    cityDataEl.textContent="";
 
     var cityButtonEl = document.createElement("button");
     cityButtonEl.setAttribute("data-city", cityname);
@@ -44,13 +47,6 @@ var searchCityHandler = function(event) {
 
     cityButtonsEl.appendChild(cityButtonEl);
 
-    // Clear data from any previous searches
-    cityCardTopEl.textContent ="";
-    cityDataEl.textContent="";
-
-    if  (cityButtonEl.innerHTML = cityname) {
-      
-    }
 
   };
 
@@ -100,10 +96,12 @@ var searchCityHandler = function(event) {
 
         // Create alerts for any errors that might come up regarding the API call
         } else {
-          cityCardTopEl.innerHTML = "";
-          cityFiveDayTitle.innerHTML = "";
           alert('Error: ' + response.statusText);
+          // Clear out the border and title that would automatically generate for a new city
+          cityCardTopEl.classList.remove("border", "border-dark");
+          cityFiveDayTitle.innerHTML = "";
 
+          // Feed erroneous city to buttonDelete()
           buttonDelete(city);
         }
       })
@@ -112,6 +110,8 @@ var searchCityHandler = function(event) {
       });
   };
   
+  // Create buttonDelete() to filter out erroneous city from the saved cities array, reset arrray in  
+  // localStorage, and run loadButtons() function again to delete the button for the erroneous city
   var buttonDelete = function(city){
     console.log(city);
 
@@ -250,7 +250,12 @@ var searchCityHandler = function(event) {
   // Create loadButtons() for saved cities search to persist on webpage upon refresh or reopening browser
   var loadButtons = function() {
 
-    cityButtonsEl.innerHTML ="";
+    // Clear content from all elements 
+    cityCardTopEl.innerHTML = "";
+    cityFiveDayTitle.innerHTML = "";
+    cityDataEl.textContent = "";       
+    cityButtonsEl.innerHTML = "";
+
     // Obtain cities array from localStorage
     var savedCities = localStorage.getItem("cities");
     
