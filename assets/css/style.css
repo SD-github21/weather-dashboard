@@ -19,8 +19,9 @@ header, #city-title {
     margin-left: 5px;
 }
 
-.card-bottom {
-    background-color: rgb(254, 244, 246);
+.card-top, .card-bottom {
+
+    background-color: rgb(249, 230, 195);
 }
 
 .card-bottom p {

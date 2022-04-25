@@ -1,5 +1,3 @@
-
-
 var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city-search");
 var cityButtonsEl = document.querySelector("#city-buttons");
@@ -7,18 +5,20 @@ var cityDataEl = document.querySelector("#five-day");
 var cityCardTopEl = document.querySelector("#card-top");
 var cityFiveDayTitle = document.querySelector(".five-day-title");
 
+var cities = [];
 var searchCityHandler = function(event) {
     // prevent page from refreshing
     event.preventDefault();
-          
-   
+       
     // get value from input element
     let cityname = cityInputEl.value.trim();
- 
+      
     if (cityname) {
       getCityData(cityname);
       buttonGenerator(cityname);
-
+      cities.push(cityname);
+      localStorage.setItem("cities", JSON.stringify(cities));
+      cityInputEl.value = "";  
      
     } else {
       alert('Please enter a city');
@@ -27,15 +27,20 @@ var searchCityHandler = function(event) {
 
 
   var buttonGenerator = function(cityname) {
+
     var cityButtonEl = document.createElement("button");
     cityButtonEl.setAttribute("data-city", cityname);
     cityButtonEl.classList = "btn mx-3 my-1"
     cityButtonEl.innerHTML = cityname;
 
+
     cityButtonsEl.appendChild(cityButtonEl);
 
     cityCardTopEl.textContent ="";
     cityDataEl.textContent="";
+
+
+
   };
 
 
@@ -205,8 +210,31 @@ var searchCityHandler = function(event) {
     }
   };
   
+  var loadButtons = function() {
+    var savedCities = localStorage.getItem("cities");
+    // if there are no cities, set cities to an empty array and return out of the function
+    if (savedCities == "" || savedCities == null) {
+      return;
+    // else, load up saved cities
+    } else {
+    // parse into array of objects
+    savedCities = JSON.parse(savedCities);
+    for (i = 0; i < savedCities.length; i++) {
+
+      var cityButtonEl = document.createElement("button");
+      cityButtonEl.setAttribute("data-city", savedCities[i]);
+      cityButtonEl.classList = "btn mx-3 my-1"
+      cityButtonEl.innerHTML = savedCities[i];
+    
+      cityButtonsEl.appendChild(cityButtonEl);
+  
+      }
+  }
+ 
+};
+  
 
 
-
+  loadButtons();
   cityButtonsEl.addEventListener('click', buttonClickHandler);
   cityFormEl.addEventListener('submit', searchCityHandler);
