@@ -9,7 +9,7 @@ var cityFiveDayTitle = document.querySelector(".five-day-title");
 // Create an array of cities to store user's searched cities in localStorage
 var cities = [];
 
-// Create a searchCityHandler function for user to enter a city into search form
+// Create searchCityHandler() for user to enter a city into search form
 var searchCityHandler = function(event) {
     // Prevent page from refreshing
     event.preventDefault();
@@ -34,7 +34,7 @@ var searchCityHandler = function(event) {
     }
   };
 
-  // Create and feed city name into buttonGenerator function to generate buttons based on user's searched cities  
+  // Create and feed city name into buttonGenerator() to generate buttons based on user's searched cities  
   var buttonGenerator = function(cityname) {
 
     var cityButtonEl = document.createElement("button");
@@ -50,7 +50,7 @@ var searchCityHandler = function(event) {
 
   };
 
-  // Create buttonClickHandler function to allow user to click on city buttons to re-generate city weather data  
+  // Create buttonClickHandler() to allow user to click on city buttons to re-generate city weather data  
   var buttonClickHandler = function(event){
     
     var city = event.target.getAttribute("data-city");
@@ -63,7 +63,7 @@ var searchCityHandler = function(event) {
     }
   };
   
-  // Create getCityData function that feeds in user's city name and places a call to the 
+  // Create getCityData() that feeds in user's city name and places a call to the 
   // Open Weather City Name API URL
   var getCityData = function(city) {
 
@@ -88,7 +88,7 @@ var searchCityHandler = function(event) {
             cityHeaderEl.textContent = cityname + "  (" + currentDay + ")";
             cityCardTopEl.appendChild(cityHeaderEl);
 
-            // Extract the lat and lon from the JSON city data and feed these into the getLonLatWeather function
+            // Extract the lat and lon from the JSON city data and feed these into the getLonLatWeather()
             lat = data.coord.lat;
             lon = data.coord.lon;
             getLonLatWeather(lat, lon);
@@ -104,7 +104,7 @@ var searchCityHandler = function(event) {
       });
   };
   
-  // Create getLonLatWeather function that feeds in lat/lon data and calls Open Weather Lat Lon API URL
+  // Create getLonLatWeather() that feeds in lat/lon data and calls Open Weather Lat Lon API URL
   var getLonLatWeather = function(lat, lon) {
     // Format the Open Weather API URL to accept lat and lon and obtain 7 day forecast 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&units=imperial&appid=06c51d7ff0a1bea11c97cc27ed41affd';
@@ -116,7 +116,7 @@ var searchCityHandler = function(event) {
         if (response.ok) {
           response.json().then(function(data) {
 
-            // Feed data into the displayCurrentDay and displayFiveDays functions
+            // Feed data into displayCurrentDay() and displayFiveDays() functions
             displayCurrentDay(data);
             displayFiveDays(data);
           });
@@ -131,7 +131,7 @@ var searchCityHandler = function(event) {
       });
   };
   
-  // Create displayCurrentDay function to print city's current weather data on webpage
+  // Create displayCurrentDay() to print city's current weather data on webpage
   var displayCurrentDay = function(data) {
 
   // Extract current day weather data from JSON data, save in variables, generate elements, and append for display
@@ -178,7 +178,7 @@ var searchCityHandler = function(event) {
   
   };
 
-  // Create displayFiveDays function to print city's 5 Day Forecast
+  // Create displayFiveDays() to print city's 5 Day Forecast
   var displayFiveDays = function(data) {
 
     // Add title for 5-Day Forecast
@@ -195,6 +195,7 @@ var searchCityHandler = function(event) {
       var cityDateEl = document.createElement("h4");
       cityDateEl.innerHTML = moment(dates*1000).format("MM/DD/YYYY");
 
+      // Extract all weather data for each date, save to variables, generate elements, and append for display
       var icons = days[i].weather[0].icon;
       var cityDayIconEl = document.createElement("img");
       cityDayIconEl.setAttribute("src", "http://openweathermap.org/img/wn/"+ icons +".png");
@@ -220,24 +221,26 @@ var searchCityHandler = function(event) {
       cityDayDataEl.appendChild(cityWindspeedEl);
       cityDayDataEl.appendChild(cityHumidityEl);
 
-      cityDataEl.appendChild(cityDayDataEl);
-
-      
+      cityDataEl.appendChild(cityDayDataEl);    
 
     }
   };
   
+  // Create loadButtons() for saved cities search to persist on webpage upon refresh or reopening browser
   var loadButtons = function() {
+
+    // Obtain cities array from localStorage
     var savedCities = localStorage.getItem("cities");
-    // if there are no cities, set cities to an empty array and return out of the function
+    
+    // If there are no cities, set cities to an empty array and return out of the function
     if (savedCities == "" || savedCities == null) {
       return;
-    // else, load up saved cities
+    // else, load savedCities and set them to the cities array
     } else {
-    // parse into array of objects
     savedCities = JSON.parse(savedCities);
-    console.log(savedCities);
     cities = savedCities;
+    
+    // Create a for loop to loop through each city and generate a button for each one that will display on page
     for (i = 0; i < savedCities.length; i++) {
 
       var cityButtonEl = document.createElement("button");
@@ -253,7 +256,7 @@ var searchCityHandler = function(event) {
 };
   
 
-
+  // Call loadButtons() and add event listeners to handle search city inputs and button clicks
   loadButtons();
   cityButtonsEl.addEventListener('click', buttonClickHandler);
   cityFormEl.addEventListener('submit', searchCityHandler);
