@@ -48,6 +48,10 @@ var searchCityHandler = function(event) {
     cityCardTopEl.textContent ="";
     cityDataEl.textContent="";
 
+    if  (cityButtonEl.innerHTML = cityname) {
+      
+    }
+
   };
 
   // Create buttonClickHandler() to allow user to click on city buttons to re-generate city weather data  
@@ -97,6 +101,7 @@ var searchCityHandler = function(event) {
         // Create alerts for any errors that might come up regarding the API call
         } else {
           alert('Error: ' + response.statusText);
+          buttonDelete(city);
         }
       })
       .catch(function(error) {
@@ -104,6 +109,19 @@ var searchCityHandler = function(event) {
       });
   };
   
+  var buttonDelete = function(city){
+    console.log(city);
+
+      cities = cities.filter(function(item) {
+        return item !== city
+    })    
+
+    console.log(cities);
+    localStorage.setItem("cities", JSON.stringify(cities));
+    loadButtons();
+
+};
+
   // Create getLonLatWeather() that feeds in lat/lon data and calls Open Weather Lat Lon API URL
   var getLonLatWeather = function(lat, lon) {
     // Format the Open Weather API URL to accept lat and lon and obtain 7 day forecast 
@@ -229,6 +247,7 @@ var searchCityHandler = function(event) {
   // Create loadButtons() for saved cities search to persist on webpage upon refresh or reopening browser
   var loadButtons = function() {
 
+    cityButtonsEl.innerHTML ="";
     // Obtain cities array from localStorage
     var savedCities = localStorage.getItem("cities");
     
