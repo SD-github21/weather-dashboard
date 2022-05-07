@@ -40,4 +40,4 @@ THEN I am again presented with current and future conditions for that city<br>
 https://sd-github21.github.io/weather-dashboard/
 
 **Screen Shot of Weather Dashboard:**<br>
-![alt text](screencapture-weather-dashboard.png)
+![alt text](assets/images/screencapture-weather-dashboard.png)
